@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t soumi/docker-reactapp -f Dockerfile.dev
+
+script:
+  - docker run -e CI=true soumi/docker-reactapp npm run test
