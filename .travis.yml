@@ -9,4 +9,17 @@ before_install:
 
 script:
   - docker run  soumi/docker-reactapp npm run test -- --coverage
-  
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-reactapplication"
+  env: "DockerReactapplication-env"
+  bucket_name: "elasticbeanstalk-us-east-2-159111468437"
+  bucket_path: "docker-reactapplication"
+
+  on:
+    branch: master
+
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
